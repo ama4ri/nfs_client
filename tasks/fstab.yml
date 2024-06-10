@@ -1,0 +1,21 @@
+- name: Add NFS volumes to /etc/fstab
+  ansible.posix.mount:
+    src: "{{ item.0.ip }}:{{ item.1.path }}"
+    path: "{{ item.1.mount_point }}"
+    opts: "{{ item.1.mount_options| default(client_mount_options, true) }}"
+    state: "{{ state }}"
+    fstype: "{{  (nfs_version == 4)|ternary('nfs4', 'nfs') }}"
+  loop: "{{ nfs_servers|subelements('fs') }}"
+
+- name: "{{ state }} dir to NFS mount point"
+  ansible.builtin.file:
+    path: "{{ item.1.mount_point }}"
+    state: "{{ (state == 'present')|ternary('directory', 'absent') }}"
+    #state: absent
+    recurse: "{{ (state == 'present')|ternary('yes', omit) }}"
+  loop: "{{ nfs_servers|subelements('fs') }}"
+
+- name: mount NFS with /etc/fstab
+  ansible.builtin.shell: mount -a
+  when: 
+  - state == 'present'

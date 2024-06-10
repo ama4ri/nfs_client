@@ -1,0 +1,5 @@
+{% for server in nfs_servers %}
+{% for item in server.fs -%} 
+{{item.mount_point }} -{{- item.mount_options| default(client_mount_options, true) }} {{ server.ip }}:{{ item.path }} 
+{%endfor%}
+{% endfor %}

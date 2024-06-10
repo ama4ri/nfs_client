@@ -1,0 +1,12 @@
+rhel_packages_list:
+  - nfs-utils
+debian_packages_list:
+  - nfs-common
+nfs3_packages:
+  - rpcbind
+autofs:
+  - autofs
+
+autofs_files:
+  - auto.master
+  - auto.nfs

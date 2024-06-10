@@ -1,0 +1,22 @@
+- set_fact:
+    full_package_list: "{{ debian_packages_list + package_list }}"
+  when: 
+    - package_list is defined 
+
+- set_fact:
+    full_package_list: "{{ full_package_list + nfs3_packages }}"
+  when: nfs_version == 3
+
+- set_fact:
+    full_package_list: "{{ full_package_list + autofs }}"
+  when: nfs_mount_type == 'autofs'
+
+- name: show result
+  ansible.builtin.debug:
+    msg: "{{ full_package_list }}"
+    
+- name: Install nfs client packages
+  ansible.builtin.apt::
+    name: "{{ full_package_list }}"
+    state: "{{ state }}"
+    update_cache: yes

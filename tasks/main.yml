@@ -1,0 +1,23 @@
+- name: import task to prepare to remove NFS client
+  include_tasks: uninstall.yml
+  when: state == 'absent'
+    
+- name: Install/Delete NFS packages for Rhel
+  include_tasks: redhat.yml
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- name: Install/Delete NFS packages for Debian
+  include_tasks: debian.yml
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- name: disable NFS3 version
+  ansible.builtin.shell: systemctl mask --now rpc-statd.service rpcbind.service rpcbind.socket
+  when: nfs_version == 4  
+
+- name: include tasks to config NFS with fstab
+  include_tasks: fstab.yml
+  when: nfs_mount_type == 'fstab'
+
+- name: include tasks to config NFS with fstab
+  include_tasks: fstab.yml
+  when: nfs_mount_type == 'autofs'

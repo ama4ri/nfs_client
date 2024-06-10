@@ -1,0 +1,17 @@
+- set_fact:
+    full_packages_list: "{{ rhel_packages_list + packages_list|default([]) }}"
+
+- set_fact:
+    full_packages_list: "{{ full_packages_list + nfs3_packages }}"
+  when: nfs_version == 3
+
+- set_fact:
+    full_packages_list: "{{ full_packages_list + autofs }}"
+  when: nfs_mount_type == 'autofs'
+
+- name: Install/Delete nfs client packages
+  ansible.builtin.yum:
+    name: "{{ full_packages_list }}"
+    state: "{{ state }}"
+    update_cache: yes
+    validate_certs: no

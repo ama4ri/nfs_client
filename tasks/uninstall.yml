@@ -1,0 +1,16 @@
+- name: stop autofs
+  ansible.builtin.systemd_service:
+    name: autofs
+    state: stopped
+  when: nfs_mount_type == 'autofs'
+  
+- name: stop rpcbind
+  ansible.builtin.systemd_service:
+    name: rpcbind
+    state: stopped
+  when: nfs_version == 3
+
+- name: delete nfs server config
+  ansible.builtin.file:  
+    path: /etc/auto.nfs
+    state: absent

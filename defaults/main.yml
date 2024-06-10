@@ -1,0 +1,5 @@
+nfs_version: 4
+client_mount_options: "rw,rsize=8192,wsize=8192"
+nfs_mount_type: "fstab"
+state: present
+timeout: 300
