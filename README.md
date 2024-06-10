@@ -32,11 +32,11 @@ In this dictionary <mount_options> is optional, defautl walue is:
 
 client_mount_options: "rw,rsize=8192,wsize=8192"
 ```
-```
-$${\color{red}Attention}$$
 
-$${\color{red}When you add mount point in case of autofs it have to be a relative path!}$$
-```
+$${\color{red}Attention!}$$
+
+When you add mount point in case of autofs it have to be a relative path!!!
+
 ### Default
 
 You can change them if it nessesary:
