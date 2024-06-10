@@ -33,4 +33,4 @@
 +auto.master
 
 
-/nfs                 /etc/auto.nfs      --timeout {{ timeout }}
+{{ autofs_main_dir }}                 /etc/auto.nfs      --timeout {{ timeout }}

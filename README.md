@@ -32,8 +32,8 @@ In this dictionary <mount_options> is optional, defautl walue is:
 
 client_mount_options: "rw,rsize=8192,wsize=8192"
 ```
-![#f03c15](Attention!!!) `#f03c15`
-![#f03c15](When you add mount point in case of autofs it must be relative path!) `#f03c15`
+$${\color{red}Attention}$$
+$${\color{red}When you add mount point in case of autofs it have to be a relative path!}$$
 ### Default
 
 You can change them if it nessesary:
@@ -42,6 +42,7 @@ nfs_mount_type: 'fstab'
 client_mount_options: "rw 0 0"
 state: present
 timeout: 300
+autofs_main_dir: /nfs
 ```
 [] nfs_mount_type:
     It has two options:
@@ -70,6 +71,8 @@ nfs3_packages:
 autofs:
   - autofs
 
+These are main files for autofs.
+```
 autofs_files:
   - auto.master
   - auto.nfs

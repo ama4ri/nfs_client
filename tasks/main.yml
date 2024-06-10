@@ -18,6 +18,6 @@
   include_tasks: fstab.yml
   when: nfs_mount_type == 'fstab'
 
-- name: include tasks to config NFS with fstab
-  include_tasks: fstab.yml
+- name: include tasks to config NFS with autofs
+  include_tasks: autofs.yml
   when: nfs_mount_type == 'autofs'
