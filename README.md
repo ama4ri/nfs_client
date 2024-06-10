@@ -32,8 +32,11 @@ In this dictionary <mount_options> is optional, defautl walue is:
 
 client_mount_options: "rw,rsize=8192,wsize=8192"
 ```
+```
 $${\color{red}Attention}$$
+
 $${\color{red}When you add mount point in case of autofs it have to be a relative path!}$$
+```
 ### Default
 
 You can change them if it nessesary:
@@ -44,15 +47,15 @@ state: present
 timeout: 300
 autofs_main_dir: /nfs
 ```
-[] nfs_mount_type:
+- [ ] nfs_mount_type:
     It has two options:
     - fstab - for permanent mount FS in your system
     - autofs - mount FS on-demand
 
-[] client_mount_options:
+- [ ] client_mount_options:
     it has been mentioned above
 
-[] state:
+- [ ] state:
     It has two optiosn:
     - present - to install and config NFS client services
     - absent - to remove services
