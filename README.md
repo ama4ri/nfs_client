@@ -3,6 +3,8 @@
 ## Description
 
 You can use this role to install and config nfs client.
+The role was tested with RedHat.
+
 It has two options:
   - automount
     It helps mouunt and unmount NFS on-demand.
@@ -35,7 +37,7 @@ client_mount_options: "rw,rsize=8192,wsize=8192"
 
 $${\color{red}Attention!}$$
 
-When you add mount point in case of autofs it have to be a relative path!!!
+When you add mount point in case of autofs, it have to be a relative path!!!
 
 ### Default
 
